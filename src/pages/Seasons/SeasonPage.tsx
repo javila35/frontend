@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
-import { Input } from "@heroui/react";
 import { getSeasonById } from "../../api";
 import { Season } from "../../types";
+import { Button } from "../../components/Button";
+import { ComboBox } from "../../components";
 
 export const SeasonPage = () => {
+  const [selectedPlayerId, setSelectedPlayerId] = useState<number | null>(null);
   const { id } = useParams();
   if (!id) {
     return <div>Error! No id in url</div>;
@@ -23,12 +26,26 @@ export const SeasonPage = () => {
     return <span>Error: {error.message}</span>;
   }
 
+  const handleComboboxClick = (id: number) => {
+    setSelectedPlayerId(id);
+  };
+
   return (
-    <div className="flex w-full flex-wrap gap-4 md:flex-nowrap">
-      <h1>{data.name}</h1>
-      <h2>Players</h2>
+    <div className="flex flex-col gap-4">
+      <h2 className="mb-4 text-4xl">{data.name}</h2>
+      <h3 className="text-2xl">Players</h3>
       <ul>{data.players?.map((p) => <li>{p.name}</li>)}</ul>
-      <Input placeholder="Add player" />
+      <div className="flex flex-row max-h-12">
+        {/* <Input /> */}
+        <ComboBox
+          options={[
+            { id: 1, name: "joe" },
+            { id: 2, name: "David" },
+          ]}
+          onClick={(id) => handleComboboxClick(id)}
+        />
+        <Button text="Submit" />
+      </div>
     </div>
   );
 };

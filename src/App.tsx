@@ -9,8 +9,8 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <div className="App">
-          <h1>Rainbow Comp Stuff</h1>
+        <div className="mx-auto flex flex-col p-4 gap-4">
+          <h1 className="text-7xl mb-6">Rainbow Comp Stuff</h1>
           <Routes>
             <Route path="/seasons" element={<SeasonsPage />} />
             <Route path="/seasons/:id" element={<SeasonPage />} />

@@ -18,8 +18,9 @@ export const SeasonsPage = () => {
   }
 
   return (
-    <div>
-      <ul>
+    <div className="flex flex-col gap-4">
+      <h1 className="text-4xl">Seasons</h1>
+      <ul className="flex flex-col gap-2">
         {data?.map(({ id, name }) => (
           <NavLink to={`/seasons/${id}`}>
             <li key={id}>{name}</li>

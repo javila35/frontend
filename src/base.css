@@ -1,8 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --color-norway-50: #f6f8f5;
+  --color-norway-100: #eaf0e8;
+  --color-norway-200: #d6e0d2;
+  --color-norway-300: #acbfa4;
+  --color-norway-400: #8da583;
+  --color-norway-500: #6b8661;
+  --color-norway-600: #566d4c;
+  --color-norway-700: #45573e;
+  --color-norway-800: #3a4635;
+  --color-norway-900: #303b2c;
+  --color-norway-950: #171e15;
+}
+
 body {
-  margin: 0;
-  padding: 0;
   font-family: "Roboto", sans-serif;
   background-color: #e2e8ce;
 }
