@@ -12,6 +12,17 @@
   --color-norway-800: #3a4635;
   --color-norway-900: #303b2c;
   --color-norway-950: #171e15;
+  --color-mine-shaft-50: #f5f6f5;
+  --color-mine-shaft-100: #e6e7e6;
+  --color-mine-shaft-200: #d0d1d0;
+  --color-mine-shaft-300: #b0b1af;
+  --color-mine-shaft-400: #868a86;
+  --color-mine-shaft-500: #6b6f6b;
+  --color-mine-shaft-600: #5d5e5c;
+  --color-mine-shaft-700: #4f504e;
+  --color-mine-shaft-800: #444644;
+  --color-mine-shaft-900: #3c3d3c;
+  --color-mine-shaft-950: #2a2b2a;
 }
 
 body {
