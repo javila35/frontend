@@ -1,7 +1,7 @@
-import { Player } from "./player";
+import { SeasonPlayer } from "./Player";
 
 export type Season = {
   name: string;
   id: number;
-  players: Player[];
+  players: SeasonPlayer[];
 };

@@ -5,7 +5,7 @@ import { useParams } from "react-router";
 import { addPlayerToSeason, getAllPlayers, getSeasonById } from "../../api";
 import { Player, Season } from "../../types";
 import { Button } from "../../components/Button";
-import { ComboBox, ComboBoxOption } from "../../components";
+import { ComboBox, ComboBoxOption, PlayerRanking } from "../../components";
 
 type PlayerMutationParams = {
   playerId?: number;
@@ -95,7 +95,11 @@ export const SeasonPage = () => {
     <div className="flex flex-col gap-4">
       <h2 className="mb-4 text-4xl">{seasonQuery.data.name}</h2>
       <h3 className="text-2xl">Players</h3>
-      <ul>{seasonQuery.data.players?.map((p) => <li>{p.name}</li>)}</ul>
+      <ul>
+        {seasonQuery.data.players?.map((p) => (
+          <PlayerRanking name={p.name} ranking={p.ranking} />
+        ))}
+      </ul>
       <div className="flex max-h-12 flex-row">
         {/* <Input /> */}
         <ComboBox

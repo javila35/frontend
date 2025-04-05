@@ -5,3 +5,7 @@ export type Player = {
   name: string;
   seasons: Season[];
 };
+
+export type SeasonPlayer = Player & {
+  ranking: number;
+};
