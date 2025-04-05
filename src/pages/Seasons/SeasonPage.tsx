@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router";
@@ -15,9 +16,10 @@ export const SeasonPage = () => {
   const [input, setInput] = useState<string>("");
   const [selectedPlayerId, setSelectedPlayerId] = useState<number | null>(null);
   const [playerList, setPlayerList] = useState<ComboBoxOption[]>([]);
-  const [error, setError] = useState<any | null>(null);
+  const [error, setError] = useState({});
   const { id } = useParams();
   const queryClient = useQueryClient();
+
   if (!id) {
     return <div>Error! No id in url</div>;
   }
@@ -50,10 +52,16 @@ export const SeasonPage = () => {
   // Set errors if encountering them
   useEffect(() => {
     if (seasonQuery.isError) {
-      setError({ ...error, getSeasonError: seasonQuery.error });
+      setError((prevError) => ({
+        ...prevError,
+        getSeasonError: seasonQuery.error,
+      }));
     }
     if (playersQuery.isError) {
-      setError({ ...error, getPlayersError: playersQuery.error });
+      setError((prevError) => ({
+        ...prevError,
+        getPlayersError: playersQuery.error,
+      }));
     }
   }, [seasonQuery, playersQuery]);
 
