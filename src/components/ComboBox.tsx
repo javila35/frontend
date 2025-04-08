@@ -26,20 +26,20 @@ export const ComboBox = ({
     ...options.slice(0, 5),
   ]);
 
-  const filterOptions = () =>
-    setFilteredOptions([
-      ...options
-        .filter((option) => option.name.includes(filterValue))
-        .slice(0, 5),
-    ]);
-
   useEffect(() => {
+    const filterOptions = () =>
+      setFilteredOptions([
+        ...options
+          .filter((option) => option.name.includes(filterValue))
+          .slice(0, 5),
+      ]);
+
     if (filterValue.length >= 1) {
       filterOptions();
     } else {
       setFilteredOptions([...options.slice(0, 5)]);
     }
-  }, [filterValue]);
+  }, [filterValue, options]);
 
   return (
     <div className="group mr-4 w-full">
@@ -71,6 +71,7 @@ export const ComboBox = ({
             className="text-base-600 hover:bg-base-50 hover:text-norway-800 flex h-12 cursor-pointer items-center gap-4 p-3 text-sm"
             role="option"
             aria-selected="false"
+            key={`combo-box-option-${name}`}
           >
             {name}
           </li>

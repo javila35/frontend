@@ -96,8 +96,8 @@ export const SeasonPage = () => {
       <h2 className="mb-4 text-4xl">{seasonQuery.data.name}</h2>
       <h3 className="text-2xl">Players</h3>
       <ul>
-        {seasonQuery.data.players?.map((p) => (
-          <PlayerRanking name={p.name} ranking={p.ranking} />
+        {seasonQuery.data.players?.map(({ id, name, ranking }) => (
+          <PlayerRanking key={`player-${id}`} name={name} ranking={ranking} />
         ))}
       </ul>
       <div className="flex max-h-12 flex-row">

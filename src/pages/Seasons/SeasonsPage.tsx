@@ -22,8 +22,8 @@ export const SeasonsPage = () => {
       <h1 className="text-4xl">Seasons</h1>
       <ul className="flex flex-col gap-2">
         {data?.map(({ id, name }) => (
-          <NavLink to={`/seasons/${id}`}>
-            <li key={id}>{name}</li>
+          <NavLink to={`/seasons/${id}`} key={`season-${id}`}>
+            <li>{name}</li>
           </NavLink>
         ))}
       </ul>
