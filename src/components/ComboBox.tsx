@@ -41,6 +41,10 @@ export const ComboBox = ({
     }
   }, [filterValue, options]);
 
+  const handleResourceClick = (id: number) => {
+    onResourceClick(id);
+  };
+
   return (
     <div className="group mr-4 w-full">
       <div id="combo-box" className="relative">
@@ -67,11 +71,12 @@ export const ComboBox = ({
       >
         {filteredOptions.map(({ id, name }) => (
           <li
-            id={`option-${id}`}
-            className="text-base-600 hover:bg-base-50 hover:text-norway-800 flex h-12 cursor-pointer items-center gap-4 p-3 text-sm"
-            role="option"
             aria-selected="false"
+            className="text-base-600 hover:bg-base-50 hover:text-norway-800 flex h-12 cursor-pointer items-center gap-4 p-3 text-sm"
+            id={`option-${id}`}
             key={`combo-box-option-${name}`}
+            onClick={() => handleResourceClick(id)}
+            role="option"
           >
             {name}
           </li>

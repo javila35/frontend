@@ -21,7 +21,7 @@ export const SeasonPage = () => {
   const queryClient = useQueryClient();
 
   if (!id) {
-    return <div>Error! No id in url</div>;
+    return <div>No id in url</div>;
   }
 
   const seasonQuery = useQuery<Season>({
@@ -42,7 +42,6 @@ export const SeasonPage = () => {
         playerId: playerId,
       }),
     onSuccess: (data) => {
-      console.log("success");
       queryClient.setQueryData(["season", id], data);
       queryClient.invalidateQueries({ queryKey: ["players"] });
       setInput("");
@@ -67,29 +66,33 @@ export const SeasonPage = () => {
 
   // Prep player list for combobox
   useEffect(() => {
-    if (playersQuery.isSuccess) {
-      setPlayerList(prepPlayersForComboBox(playersQuery.data));
+    if (playersQuery.isSuccess && seasonQuery.isSuccess) {
+      setPlayerList(
+        prepPlayersForComboBox({
+          allPlayersList: playersQuery.data,
+          seasonPlayersList: seasonQuery.data.players,
+        }),
+      );
     }
-  }, [playersQuery.isSuccess, playersQuery.data]);
+  }, [
+    playersQuery.isSuccess,
+    playersQuery.data,
+    seasonQuery.isSuccess,
+    seasonQuery.data,
+  ]);
 
   if (seasonQuery.isPending || playersQuery.isPending) {
     return <div>Loading...</div>;
   }
 
   if (seasonQuery.isError || playersQuery.isError) {
-    {
-      console.error(error);
-    }
     return <span>Error</span>;
   }
 
   const handleComboboxClick = (id: number) => {
-    setInput(playerList.find((p) => p.id === id)?.name || "");
     setSelectedPlayerId(id);
+    console.log(selectedPlayerId);
   };
-
-  const prepPlayersForComboBox = (playerList: Player[]) =>
-    playerList.map((player) => ({ id: player.id, name: player.name }));
 
   return (
     <div className="flex flex-col gap-4">
